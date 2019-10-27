@@ -9,31 +9,31 @@
 		<link rel="shortcut icon" type="image/png" href="assets/images/icon/favicon.ico">
 		<link rel="stylesheet" href="assets/css/bootstrap.min.css">
 		<link rel="stylesheet" href="assets/css/font-awesome.min.css">
-		<!-- 		<link rel="stylesheet" href="assets/css/themify-icons.css">
-		<link rel="stylesheet" href="assets/css/metisMenu.css">
-		<link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-		<link rel="stylesheet" href="assets/css/slicknav.min.css"> -->
 
-		<!-- others css -->
-		<!-- <link rel="stylesheet" href="assets/css/typography.css"> -->
 		<link rel="stylesheet" href="assets/css/default-css.css">
 		<link rel="stylesheet" href="assets/css/styles.css">
 		<link rel="stylesheet" href="assets/css/responsive.css">
-
-		<!-- modernizr css -->
-		<!-- <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script> -->
-
+		<script src="assets/js/vendor/jquery-2.2.4.min.js"></script>
 		<script src="assets/js/moment.min.js"></script>
 		<script src="assets/js/Chart.js"></script>
 		<script src="assets/js/chartjs-plugin-streaming.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/live/3.1/firebase.js"></script>
 
 	</head>
 
 	<body>
+		<pre id="object"></pre>
 		<div id="preloader">
 			<div class="loader"></div>
 		</div>
 		<!-- preloader area end -->
+		<!-- json area start -->		
+<!-- 	<canvas id="line2Chart"></canvas>
+	<br>
+	<p class="center"><button id="showYear" class="hide">Toggle to Year</button></p>
+							
+							<script src="assets/js/script.js"></script> -->
+		<!-- json area end -->
 		<!-- page container area start -->
 		<div class="page-container">
 			<!-- main content area start -->
@@ -43,7 +43,7 @@
 					<div class="row align-items-center">
 						<div class="col-sm-6">
 							<div class="breadcrumbs-area clearfix">
-								<h4 class="page-title pull-left">Dashboard</h4>
+								<h4 class="page-title pull-left">UC IoT</h4>
 								<ul class="breadcrumbs pull-left">
 									<!-- <li><a href="index.html">Home</a></li> -->
 									<li><span>Dashboard</span></li>
@@ -51,7 +51,7 @@
 							</div>
 						</div>
 						<div class="col-sm-6 clearfix">
-							<div class="user-profile pull-right">
+							<!-- <div class="user-profile pull-right">
 								<img class="avatar user-thumb" src="assets/images/author/avatar.png" alt="avatar">
 								<h4 class="user-name dropdown-toggle" data-toggle="dropdown">Xinlin Li <i class="fa fa-angle-down"></i></h4>
 								<div class="dropdown-menu">
@@ -59,7 +59,7 @@
 									<a class="dropdown-item" href="#">Settings</a>
 									<a class="dropdown-item" href="#">Log Out</a>
 								</div>
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</div>
@@ -78,7 +78,7 @@
 											<option value="line2">Last Month</option>
 										</select>
 									</div>
-									<div class="user-statistics chartClass0">
+									<div class="chartClass0">
 										<canvas id="line0Chart0" style="display: inherit;"></canvas>
 										<canvas id="line1Chart0" style="display: none;"></canvas>
 										<canvas id="line2Chart0" style="display: none;"></canvas>
@@ -100,9 +100,10 @@
 											<option value="line2">Last Month</option>
 										</select>
 									</div>
-									<div class="user-statistics chartClass1">
+									<div class=" chartClass1">
 										<canvas id="line0Chart1" style="display: inherit;"></canvas>
 										<canvas id="line1Chart1" style="display: none;"></canvas>
+										<!-- <p class="center"><button id="showYear" class="hide">Toggle to Year</button></p> -->
 										<canvas id="line2Chart1" style="display: none;"></canvas>
 									</div>
 
@@ -123,7 +124,7 @@
 											<option value="line2">Last Month</option>
 										</select>
 									</div>
-									<div class="user-statistics chartClass2">
+									<div class=" chartClass2">
 										<canvas id="line0Chart2" style="display: inherit;"></canvas>
 										<canvas id="line1Chart2" style="display: none;"></canvas>
 										<canvas id="line2Chart2" style="display: none;"></canvas>
@@ -151,89 +152,18 @@
 			</div>
 		</div>
 
+    <!-- loading a javascript library for data visualization Charts.js -->
+
 		<script src="assets/js/chart0.js"></script>
 		<script src="assets/js/chart1.js"></script>
 		<script src="assets/js/chart2.js"></script>
 
-		<script>
-			// For Map
-			function initMap() {
-				var map = new google.maps.Map(document.getElementById('map'), {
-					zoom: 15,
-					center: {
-						lat: -35.2366226,
-						lng: 149.0828272
-					}
-				});
-				var GPS1 = {
-					lat: -35.2376749,
-					lng: 149.0822676
-				};
-				var GPS2 = {
-					lat: -35.238087,
-					lng: 149.083781
-				};
-				var marker1 = new google.maps.Marker({
-					position: GPS1,
-					map: map,
-					title: 'GPS1'
-				});
-				var marker2 = new google.maps.Marker({
-					position: GPS2,
-					map: map,
-					title: 'GPS2'
-				});
-
-				var contentString1 = '<div id="content">' +
-					'<div id="siteNotice">' +
-					'</div>' +
-					'<h1 id="firstHeading" class="firstHeading">GPS 1+Sensor</h1>' +
-					'<div id="bodyContent">' +
-					'<p><b>GPS+Sensor</b>, also has <b>PP sensor</b>, is a ' +
-					' Particulate Matter Sensor ' +
-					'on a Raspberry pi </p>' +
-					'<p>Attribution: Raspberry pi, <a href="https://www.raspberrypi.org/products/raspberry-pi-4-model-b/">' +
-					'Raspberry pi 4</a> ' +
-					'(last visited Aug 22, 2019).</p>' +
-					'</div>' +
-					'</div>';
-				var contentString2 = '<div id="content">' +
-					'<div id="siteNotice">' +
-					'</div>' +
-					'<h1 id="firstHeading" class="firstHeading">GPS 2+Sensor</h1>' +
-					'<div id="bodyContent">' +
-					'<p><b>GPS+Sensor</b>, also has <b>PP sensor</b>, is a ' +
-					' Particulate Matter Sensor ' +
-					'on a Raspberry pi </p>' +
-					'<p>Attribution: Raspberry pi, <a href="https://www.raspberrypi.org/products/raspberry-pi-4-model-b/">' +
-					'Raspberry pi 4</a> ' +
-					'(last visited Aug 22, 2019).</p>' +
-					'</div>' +
-					'</div>';
-
-				var infowindow1 = new google.maps.InfoWindow({
-					content: contentString1,
-					maxWidth: 200,
-					maxHighth: 20,
-				});
-				var infowindow2 = new google.maps.InfoWindow({
-					content: contentString2,
-					maxWidth: 200,
-					maxHighth: 100,
-				});
-				marker1.addListener('click', function() {
-					infowindow1.open(map, marker1);
-				});
-				marker2.addListener('click', function() {
-					infowindow2.open(map, marker2);
-				});
-			}
-		</script>
+		<script src="assets/js/gmap.js"></script>
 		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBMP7mAeE0HawqSC5416MT_We5oAHNIvo&callback=initMap">
 		</script>
 
 		<!-- jquery latest version -->
-		<script src="assets/js/vendor/jquery-2.2.4.min.js"></script>
+
 
 		<script src="assets/js/scripts.js"></script>
 	</body>

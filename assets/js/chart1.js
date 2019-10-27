@@ -228,10 +228,10 @@ var $element = document.getElementById("line2Chart1"),
     $btn = document.getElementById("showYear");
     
 //create a drawing context on the canvas
-var ctx = $element.getContext("2d");
+var ctx = document.getElementById("line2Chart1").getContext("2d");
 
 //declare variables
-var line2Chart1;
+// var line2Chart1;
 var data = {},
   processedData = {},
   orderClosingByMonth = {};
@@ -258,7 +258,7 @@ var jsonData = $.ajax({
     }]
   };
 
-  line2Chart1 = new Chart(ctx, {
+  var line2Chart1 = new Chart(ctx, {
     type: 'line',
     data: data,
     options: {
@@ -339,33 +339,33 @@ var processData = function(jsonData) {
   }
 };
 
-$element.onclick = function(event) {
-  var activePoints = line2Chart1.getElementsAtEvent(event);
+// $element.onclick = function(event) {
+//   var activePoints = line2Chart1.getElementsAtEvent(event);
 
-  if (activePoints.length > 0) {
-    //get the internal index of slice on the chart
-    var clickedElementindex = activePoints[0]["_index"];
+//   if (activePoints.length > 0) {
+//     //get the internal index of slice on the chart
+//     var clickedElementindex = activePoints[0]["_index"];
 
-    //get specific label by index 
-    var label = line2Chart1.data.labels[clickedElementindex];
+//     //get specific label by index 
+//     var label = line2Chart1.data.labels[clickedElementindex];
 
-    //get value by index      
-    var value = line2Chart1.data.datasets[0].data[clickedElementindex];
+//     //get value by index      
+//     var value = line2Chart1.data.datasets[0].data[clickedElementindex];
 
     
-    /* update chart data */
-    if(labels.indexOf(label) != -1) {
-      line2Chart1.data.labels = orderClosingByMonth[label].allKey.reverse();
-      line2Chart1.data.datasets[0].data = orderClosingByMonth[label].allValue.reverse();
-      line2Chart1.update();  
-      $btn.classList.remove("hide");
-    }
+//     /* update chart data */
+//     if(labels.indexOf(label) != -1) {
+//       line2Chart1.data.labels = orderClosingByMonth[label].allKey.reverse();
+//       line2Chart1.data.datasets[0].data = orderClosingByMonth[label].allValue.reverse();
+//       line2Chart1.update();  
+//       $btn.classList.remove("hide");
+//     }
     
-  }
-};
-$btn.onclick = function(event) {
-  line2Chart1.data.labels = processedData.labels;
-  line2Chart1.data.datasets[0].data = processedData.data;
-  line2Chart1.update();  
-  $btn.classList.add("hide");
-}
+//   }
+// };
+// $btn.onclick = function(event) {
+//   line2Chart1.data.labels = processedData.labels;
+//   line2Chart1.data.datasets[0].data = processedData.data;
+//   line2Chart1.update();  
+//   $btn.classList.add("hide");
+// };
