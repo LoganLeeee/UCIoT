@@ -55,10 +55,10 @@ var line0Chart0 = new Chart(ctx, {
 
 				type: 'realtime',
 				realtime: {
-					duration: 120000,
-					refresh: 5000,
+					duration: 60000,
+					refresh: 12000,
 
-					// delay: 200,
+					delay: -1200,
 					pause: false,
 					onRefresh: function(chart) {
 
