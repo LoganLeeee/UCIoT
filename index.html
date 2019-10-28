@@ -15,26 +15,6 @@
 		<!-- Main CSS -->
 		<link href="css/main.css" rel="stylesheet" media="screen" />
 
-		<!-- Ion Icons -->
-		<link href="fonts/icomoon/icomoon.css" rel="stylesheet" />
-
-		<!-- C3 CSS -->
-		<link href="css/c3/c3.css" rel="stylesheet" />
-
-		<!-- NVD3 CSS -->
-		<link href="css/nvd3/nv.d3.css" rel="stylesheet" />
-
-		<!-- Horizontal bar CSS -->
-		<link href="css/horizontal-bar/chart.css" rel="stylesheet" />
-
-		<!-- Calendar Heatmap CSS -->
-		<link href="css/heatmap/cal-heatmap.css" rel="stylesheet" />
-
-		<!-- Circliful CSS -->
-		<link rel="stylesheet" href="css/circliful/circliful.css" />
-
-		<!-- OdoMeter CSS -->
-		<link rel="stylesheet" href="css/odometer.css" />
 
 		<!-- HTML5 shiv and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
@@ -94,14 +74,14 @@
 						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 							<ul class="right-stats" id="mini-nav-right">
 								<li>
-									<a class="btn btn-danger"><span><p id="object">null</p></span>CO2</a>
+									<a class="btn btn-danger"><span><p id="co2data">__</p></span>CO2</a>
 								</li>
 								<li>
 									<a class="btn btn-success">
 										<span>18</span>UV</a>
 								</li>
 								<li>
-									<a class="btn btn-info"><i class="icon-download6"></i> <span>On</span>GPS</a>
+									<a class="btn btn-info"> <span><p id="gpsdata">__</p></span>GPS</a>
 								</li>
 							</ul>
 						</div>
@@ -115,11 +95,12 @@
 						<div class="panel">
 							<div class="panel-heading">
 								<h4>CO2</h4>
-								<select class="custome-select border-0 pr-3" id="chart0Type">
+								<select data-toggle="dropdown" class="btn btn-default dropdown-toggle btn-xs" id="chart0Type">
 									<option value="line0">Live Data</option>
 									<option value="line1">Last Week</option>
 									<option value="line2">Last Month</option>
 								</select>
+								<button class="btn btn-default dropdown-toggle btn-xs hide" id="co2showYear" style=" float: right;" >Toggle to Year</button>
 							</div>
 							<div class="panel-body">
 								<!-- <div id="line0Chart0" style="display: inherit;" class="chart-height3"></div> -->
@@ -135,11 +116,15 @@
 						<div class="panel">
 							<div class="panel-heading">
 								<h4>UV</h4>
-								<select class="custome-select border-0 pr-3" id="chart1Type">
+								<div>
+								<select data-toggle="dropdown" class="btn btn-default dropdown-toggle btn-xs" id="chart1Type">
 									<option value="line0">Live Data</option>
 									<option value="line1">Last Week</option>
 									<option value="line2">Last Month</option>
 								</select>
+								<button class="btn btn-default dropdown-toggle btn-xs hide" id="UVshowYear" style=" float: right;" >Toggle to Year</button>
+
+								</div>
 							</div>
 							<div class="panel-body">
 								<div class=" chartClass1 chart-height3">
@@ -147,8 +132,7 @@
 									<canvas id="line1Chart1" style="display: none;">
 
 									</canvas>
-									<button id="showYear" class="hide">Toggle to Month</button>
-
+									
 									<canvas id="line2Chart1" style="display: none;"></canvas>
 								</div>
 
@@ -164,11 +148,14 @@
 						<div class="panel">
 							<div class="panel-heading">
 								<h4>Noise</h4>
-								<select class="custome-select border-0 pr-3" id="chart2Type">
+								<div>
+								<select data-toggle="dropdown" class="btn btn-default dropdown-toggle btn-xs" id="chart2Type">				
 									<option value="line0">Live Data</option>
 									<option value="line1">Last Week</option>
 									<option value="line2">Last Month</option>
 								</select>
+								
+								</div>
 							</div>
 							<div class="panel-body">
 								<div class=" chartClass2 chart-height3">
@@ -185,7 +172,7 @@
 								<h4>GPS Tracker</h4>
 							</div>
 							<div class="panel-body">
-								<div id="map" class="chart-height3"></div>
+								<div id="map" class="chart-height1"></div>
 							</div>
 						</div>
 					</div>
