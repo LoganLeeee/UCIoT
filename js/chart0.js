@@ -14,7 +14,8 @@ function showHide0() {
 // For line0Chart
 var ctx = document.getElementById('line0Chart0').getContext('2d');
 var livedata;
-
+// carbon.on('value',snap=>{
+// 	console.log(snap.val())
 
 var line0Chart0 = new Chart(ctx, {
 
@@ -228,10 +229,6 @@ var line2Chart0 = new Chart(ctx, {
 function record(live) {
 	livedata = live;
 }
-
-function ison(live) {
-	isondata = live;
-}
 var config = {
 	"apiKey": "AIzaSyBhtDrarSwfkST07CdAzUZo1FHXM_L-9hE",
 	"authDomain": "uc-iot-45075.firebaseapp.com",
@@ -243,25 +240,9 @@ var config = {
 };
 
 firebase.initializeApp(config);
-
+const preObject = document.getElementById('object');
 var valueRef = firebase.database().ref().child('UC-iot').child('CO2');
-var timeStamp =firebase.database().ref().child('UC-iot').child('timestamp');
-			timeStamp.on('value', function(snap) {
-				ison(snap.val());
-
-				if(snap.val()!=isondata){
-					valueRef.on('value', function(snapshot) {
-						console.log(snapshot.val());
-						record(snapshot.val());
-					});
-					
-					console.log(snap.val());
-
-				}
-				else record(null);
-			});
-
-// valueRef.on('value', function(snapshot) {
-// 	console.log(snapshot.val());
-// 	record(snapshot.val());
-// });
+valueRef.on('value', function(snapshot) {
+    preObject.innerText=JSON.stringify(snapshot.val(),null,1);
+	record(snapshot.val());
+});

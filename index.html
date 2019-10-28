@@ -1,171 +1,243 @@
-<!doctype html>
-<html class="no-js" lang="en">
-
+<!DOCTYPE html>
+<html lang="en">
 	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="x-ua-compatible" content="ie=edge">
-		<title>UC IoT</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="shortcut icon" type="image/png" href="assets/images/icon/favicon.ico">
-		<link rel="stylesheet" href="assets/css/bootstrap.min.css">
-		<link rel="stylesheet" href="assets/css/font-awesome.min.css">
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="UC IoT Dashboard" />
 
-		<link rel="stylesheet" href="assets/css/default-css.css">
-		<link rel="stylesheet" href="assets/css/styles.css">
-		<link rel="stylesheet" href="assets/css/responsive.css">
-		<script src="assets/js/vendor/jquery-2.2.4.min.js"></script>
-		<script src="assets/js/moment.min.js"></script>
-		<script src="assets/js/Chart.js"></script>
-		<script src="assets/js/chartjs-plugin-streaming.js"></script>
-		<script src="https://www.gstatic.com/firebasejs/live/3.1/firebase.js"></script>
+		<meta name="author" content="Xinlin" />
+		<link rel="shortcut icon" href="img/fav.ico">
+		<title>UC IoT Dashboard</title>
+
+		<!-- Bootstrap CSS -->
+		<link href="css/bootstrap.min.css" rel="stylesheet" media="screen" />
+
+		<!-- Main CSS -->
+		<link href="css/main.css" rel="stylesheet" media="screen" />
+
+		<!-- Ion Icons -->
+		<link href="fonts/icomoon/icomoon.css" rel="stylesheet" />
+
+		<!-- C3 CSS -->
+		<link href="css/c3/c3.css" rel="stylesheet" />
+
+		<!-- NVD3 CSS -->
+		<link href="css/nvd3/nv.d3.css" rel="stylesheet" />
+
+		<!-- Horizontal bar CSS -->
+		<link href="css/horizontal-bar/chart.css" rel="stylesheet" />
+
+		<!-- Calendar Heatmap CSS -->
+		<link href="css/heatmap/cal-heatmap.css" rel="stylesheet" />
+
+		<!-- Circliful CSS -->
+		<link rel="stylesheet" href="css/circliful/circliful.css" />
+
+		<!-- OdoMeter CSS -->
+		<link rel="stylesheet" href="css/odometer.css" />
+
+		<!-- HTML5 shiv and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+			<script src="js/html5shiv.js"></script>
+			<script src="js/respond.min.js"></script>
+		<![endif]-->
 
 	</head>
 
 	<body>
-		<pre id="object"></pre>
-		<div id="preloader">
-			<div class="loader"></div>
-		</div>
-		<!-- preloader area end -->
-		<!-- json area start -->		
-<!-- 	<canvas id="line2Chart"></canvas>
-	<br>
-	<p class="center"><button id="showYear" class="hide">Toggle to Year</button></p>
-							
-							<script src="assets/js/script.js"></script> -->
-		<!-- json area end -->
-		<!-- page container area start -->
-		<div class="page-container">
-			<!-- main content area start -->
-			<div class="main-content">
-				<!-- page title area start -->
-				<div class="page-title-area">
-					<div class="row align-items-center">
-						<div class="col-sm-6">
-							<div class="breadcrumbs-area clearfix">
-								<h4 class="page-title pull-left">UC IoT</h4>
-								<ul class="breadcrumbs pull-left">
-									<!-- <li><a href="index.html">Home</a></li> -->
-									<li><span>Dashboard</span></li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-sm-6 clearfix">
-							<!-- <div class="user-profile pull-right">
-								<img class="avatar user-thumb" src="assets/images/author/avatar.png" alt="avatar">
-								<h4 class="user-name dropdown-toggle" data-toggle="dropdown">Xinlin Li <i class="fa fa-angle-down"></i></h4>
-								<div class="dropdown-menu">
-									<a class="dropdown-item" href="#">Message</a>
-									<a class="dropdown-item" href="#">Settings</a>
-									<a class="dropdown-item" href="#">Log Out</a>
-								</div>
-							</div> -->
-						</div>
-					</div>
-				</div>
-				<!-- page title area end -->
 
-				<div class="main-content-inner">
-					<div class="row">
-						<div class="col-lg-8 mt-5">
-							<div class="card">
-								<div class="card-body">
-									<div class="d-flex justify-content-between align-items-center">
-										<h4 class="header-title mb-0">CO2</h4>
-										<select class="custome-select border-0 pr-3" id="chart0Type">
-											<option value="line0">Last 24 Hours</option>
-											<option value="line1">Last Week</option>
-											<option value="line2">Last Month</option>
-										</select>
-									</div>
-									<div class="chartClass0">
-										<canvas id="line0Chart0" style="display: inherit;"></canvas>
-										<canvas id="line1Chart0" style="display: none;"></canvas>
-										<canvas id="line2Chart0" style="display: none;"></canvas>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+		<!-- Header starts -->
+		<header>
 
-					<div class="row">
-						<div class="col-lg-8 mt-5">
-							<div class="card">
-								<div class="card-body">
-									<div class="d-flex justify-content-between align-items-center">
-										<h4 class="header-title mb-0">UV</h4>
-										<select class="custome-select border-0 pr-3" id="chart1Type">
-											<option value="line0">Last 24 Hours</option>
-											<option value="line1">Last Week</option>
-											<option value="line2">Last Month</option>
-										</select>
-									</div>
-									<div class=" chartClass1">
-										<canvas id="line0Chart1" style="display: inherit;"></canvas>
-										<canvas id="line1Chart1" style="display: none;"></canvas>
-										<!-- <p class="center"><button id="showYear" class="hide">Toggle to Year</button></p> -->
-										<canvas id="line2Chart1" style="display: none;"></canvas>
-									</div>
+			<!-- Logo starts -->
+			<a href="index.html" class="logo">
+				<img src="img/logo.png" alt="Arise Admin Dashboard Logo" />
+			</a>
+			<!-- Logo ends -->
 
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-lg-8 mt-5">
-							<div class="card">
-								<div class="card-body">
-									<div class="d-flex justify-content-between align-items-center">
-										<h4 class="header-title mb-0">Noise</h4>
-										<select class="custome-select border-0 pr-3" id="chart2Type">
-											<option value="line0">Last 24 Hours</option>
-											<option value="line1">Last Week</option>
-											<option value="line2">Last Month</option>
-										</select>
-									</div>
-									<div class=" chartClass2">
-										<canvas id="line0Chart2" style="display: inherit;"></canvas>
-										<canvas id="line1Chart2" style="display: none;"></canvas>
-										<canvas id="line2Chart2" style="display: none;"></canvas>
-									</div>
-					
-								</div>
-							</div>
-						</div>
-					</div>
+			<!-- Header actions starts -->
+			<ul id="header-actions" class="clearfix">
 
 
-					<!-- Gmap area start -->
-					<div class="row">
-						<div class="col-xl-5 col-lg-12 mt-5">
-							<div class="card">
-								<div class="card-body">
-									<h4 class="header-title">GPS1 Tracker</h4>
-									<div id="map"></div>
+			</ul>
+			<!-- Header actions ends -->
 
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+			<div class="custom-search hidden-sm hidden-xs">
+				<input type="text" class="search-query" placeholder="Search here ...">
+				<i class="icon-search3"></i>
 			</div>
+		</header>
+		<!-- Header ends -->
+
+		<!-- Left sidebar start -->
+		<div class="vertical-nav vertical-nav-sm">
+
+
 		</div>
+		<!-- Left sidebar end -->
 
-    <!-- loading a javascript library for data visualization Charts.js -->
+		<!-- Dashboard Wrapper Start -->
+		<div class="dashboard-wrapper">
 
-		<script src="assets/js/chart0.js"></script>
-		<script src="assets/js/chart1.js"></script>
-		<script src="assets/js/chart2.js"></script>
+			<!-- Container fluid Starts -->
+			<div class="container-fluid">
 
-		<script src="assets/js/gmap.js"></script>
+				<!-- Top Bar Starts -->
+				<div class="top-bar clearfix">
+					<div class="row gutter">
+						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+							<div class="page-title">
+								<h3>UC IoT</h3>
+								<p>IoT Dashboard </p>
+							</div>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+							<ul class="right-stats" id="mini-nav-right">
+								<li>
+									<a class="btn btn-danger"><span><p id="object">null</p></span>CO2</a>
+								</li>
+								<li>
+									<a class="btn btn-success">
+										<span>18</span>UV</a>
+								</li>
+								<li>
+									<a class="btn btn-info"><i class="icon-download6"></i> <span>On</span>GPS</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- Top Bar Ends -->
+
+				<!-- Row start -->
+				<div class="row gutter">
+					<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+						<div class="panel">
+							<div class="panel-heading">
+								<h4>CO2</h4>
+								<select class="custome-select border-0 pr-3" id="chart0Type">
+									<option value="line0">Live Data</option>
+									<option value="line1">Last Week</option>
+									<option value="line2">Last Month</option>
+								</select>
+							</div>
+							<div class="panel-body">
+								<!-- <div id="line0Chart0" style="display: inherit;" class="chart-height3"></div> -->
+								<div class="chartClass0 chart-height3">
+									<canvas id="line0Chart0" style="display: inherit;"></canvas>
+									<canvas id="line1Chart0" style="display: none;"></canvas>
+									<canvas id="line2Chart0" style="display: none;"></canvas>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+						<div class="panel">
+							<div class="panel-heading">
+								<h4>UV</h4>
+								<select class="custome-select border-0 pr-3" id="chart1Type">
+									<option value="line0">Live Data</option>
+									<option value="line1">Last Week</option>
+									<option value="line2">Last Month</option>
+								</select>
+							</div>
+							<div class="panel-body">
+								<div class=" chartClass1 chart-height3">
+									<canvas id="line0Chart1" style="display: inherit;"></canvas>
+									<canvas id="line1Chart1" style="display: none;">
+
+									</canvas>
+									<button id="showYear" class="hide">Toggle to Month</button>
+
+									<canvas id="line2Chart1" style="display: none;"></canvas>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Row ends -->
+
+				<!-- Row start -->
+				<div class="row gutter">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+						<div class="panel">
+							<div class="panel-heading">
+								<h4>Noise</h4>
+								<select class="custome-select border-0 pr-3" id="chart2Type">
+									<option value="line0">Live Data</option>
+									<option value="line1">Last Week</option>
+									<option value="line2">Last Month</option>
+								</select>
+							</div>
+							<div class="panel-body">
+								<div class=" chartClass2 chart-height3">
+									<canvas id="line0Chart2" style="display: inherit;"></canvas>
+									<canvas id="line1Chart2" style="display: none;"></canvas>
+									<canvas id="line2Chart2" style="display: none;"></canvas>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+						<div class="panel">
+							<div class="panel-heading">
+								<h4>GPS Tracker</h4>
+							</div>
+							<div class="panel-body">
+								<div id="map" class="chart-height3"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Row ends -->
+
+
+
+			</div>
+			<!-- Container fluid ends -->
+
+		</div>
+		<!-- Dashboard Wrapper End -->
+
+		<!-- Footer Start -->
+		<footer>
+			Copyright Logan Lee <span>2019</span>
+		</footer>
+		<!-- Footer end -->
+
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<!-- <script src="js/jquery.js"></script> -->
+		<script src="js/jquery-2.2.4.min.js"></script>
+
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="js/bootstrap.min.js"></script>
+
+		<!-- jquery ScrollUp JS -->
+		<!-- <script src="js/scrollup/jquery.scrollUp.js"></script> -->
+
+		<!-- Flot Charts -->
+		<!-- <script src="js/flot/jquery.flot.js"></script> -->
+<!-- 		<script src="js/flot/jquery.flot.orderBar.min.js"></script>
+		<script src="js/flot/jquery.flot.pie.min.js"></script>
+		<script src="js/flot/jquery.flot.stack.min.js"></script>
+		<script src="js/flot/jquery.flot.tooltip.min.js"></script>
+		<script src="js/flot/jquery.flot.resize.min.js"></script> -->
+
+
+		<!-- Custom JS -->
+		<!-- <script src="js/custom.js"></script> -->
+		<script src="js/jquery-2.2.4.min.js"></script>
+		<script src="js/moment.min.js"></script>
+		<script src="js/Chart.js"></script>
+		<script src="js/chartjs-plugin-streaming.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/live/3.1/firebase.js"></script>
+		<script src="js/chart0.js"></script>
+		<script src="js/chart1.js"></script>
+		<script src="js/chart2.js"></script>
+		<script src="js/gmap.js"></script>
 		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBMP7mAeE0HawqSC5416MT_We5oAHNIvo&callback=initMap">
 		</script>
 
-		<!-- jquery latest version -->
-
-
-		<script src="assets/js/scripts.js"></script>
 	</body>
-
 </html>
