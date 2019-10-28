@@ -84,7 +84,7 @@
 				
 
 			// });
-			
+			var livedata1;
 			//For line1Chart
 			
 			var ctx = document.getElementById("line1Chart1").getContext('2d');
@@ -172,15 +172,15 @@
 
 						// borderDash: [8, 4]
 					},
-					{
+					// {
 
-						label: 'Data 2',
+					// 	label: 'Data 2',
 
-						borderColor: 'rgb(54, 162, 235)',
+					// 	borderColor: 'rgb(54, 162, 235)',
 
-						backgroundColor: 'rgba(54, 162, 235, 0.5)'
+					// 	backgroundColor: 'rgba(54, 162, 235, 0.5)'
 
-					}
+					// }
 					]
 
 				},
@@ -204,7 +204,8 @@
 
 											x: Date.now(),
 
-											y: Math.random()
+											// y: Math.random()
+											y: livedata1
 
 										});
 
@@ -369,3 +370,16 @@ var processData = function(jsonData) {
 //   line2Chart1.update();  
 //   $btn.classList.add("hide");
 // };
+
+
+// Live data Start
+function record1(live) {
+	livedata1 = live;
+}
+
+
+var valueRef = firebase.database().ref().child('UC-iot').child('CO2');
+valueRef.on('value', function(snapshot) {
+
+	record1(snapshot.val());
+});

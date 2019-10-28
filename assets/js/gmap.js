@@ -1,3 +1,4 @@
+var isondata;
 function initMap() {
 				var map = new google.maps.Map(document.getElementById('map'), {
 					zoom: 15,
@@ -69,4 +70,27 @@ function initMap() {
 				marker2.addListener('click', function() {
 					infowindow2.open(map, marker2);
 				});
+
+			
+			function ison(live) {
+				isondata = live;
 			}
+
+			var valueRef = firebase.database().ref().child('UC-iot');
+			var timeStamp =firebase.database().ref().child('UC-iot').child('timestamp');
+			// valueRef.on('value', function(snapshot) {
+			// 	if(snapshot.exists()==false){
+			// 		console.log(snapshot.exists());
+			// 		marker2.setMap(null);
+			// 	};
+			
+			timeStamp.on('value', function(snapshot) {
+				ison(snapshot.val());
+				if(snapshot.val()==isondata){
+					console.log(snapshot.val());
+					marker2.setMap(null);
+				};
+				console.log(snapshot.exists());
+				
+			});
+						};
