@@ -334,31 +334,31 @@ firebase.initializeApp(config);
 
 // return null when disconnected
 
-var valueRef = firebase.database().ref().child('UC-iot').child('CO2');
-var timeStamp = firebase.database().ref().child('UC-iot').child('timestamp');
-timeStamp.on('value', function(snap) {
-	ison(snap.val());
+// var valueRef = firebase.database().ref().child('UC-iot').child('CO2');
+// var timeStamp = firebase.database().ref().child('UC-iot').child('timestamp');
+// timeStamp.on('value', function(snap) {
+// 	ison(snap.val());
 
-	if (snap.val() != isondata) {
+// 	if (snap.val() != isondata) {
 
-		valueRef.on('value', function(snapshot) {
+// 		valueRef.on('value', function(snapshot) {
 
-			record(snapshot.val());
-		});
+// 			record(snapshot.val());
+// 		});
 
-		// console.log(snap.val());
+// 		// console.log(snap.val());
 
-	} else {
-		record(null);
+// 	} else {
+// 		record(null);
 
-	}
-});
+// 	}
+// });
 
 // return last data when disconnected
 
-// const co2data = document.getElementById('co2data');
-// var valueRef = firebase.database().ref().child('UC-iot').child('CO2');
+const co2data = document.getElementById('co2data');
+var valueRef = firebase.database().ref().child('UC-iot').child('CO2');
 valueRef.on('value', function(snapshot) {
 	co2data.innerText = JSON.stringify(snapshot.val(), null, 1);
-	// record(snapshot.val());
+	record(snapshot.val());
 });

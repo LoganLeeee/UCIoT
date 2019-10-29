@@ -75,26 +75,26 @@ function initMap() {
 
 
 	function ison(live) {
-		isondata = live;
-	}
-
-	var valueRef = firebase.database().ref().child('UC-iot');
-	var timeStamp = firebase.database().ref().child('UC-iot').child('timestamp');
-	// valueRef.on('value', function(snapshot) {
-	// 	if(snapshot.exists()==false){
-	// 		console.log(snapshot.exists());
-	// 		marker2.setMap(null);
-	// 	};
-	const gpsdata = document.getElementById('gpsdata');
-	timeStamp.on('value', function(snapshot) {
-		ison(snapshot.val());
-		//Change to != to show GPS ON 
-		if (snapshot.val() == isondata) {
-			// console.log(snapshot.val());
-			marker1.setMap(null);
-			gpsdata.innerText = 'Off';
-		} else gpsdata.innerText = 'On';
-		// console.log(snapshot.exists());
-
-	});
-};
+			isondata = live;
+		}
+	
+		var valueRef = firebase.database().ref().child('UC-iot');
+		var timeStamp = firebase.database().ref().child('UC-iot').child('timestamp');
+		// valueRef.on('value', function(snapshot) {
+		// 	if(snapshot.exists()==false){
+		// 		console.log(snapshot.exists());
+		// 		marker2.setMap(null);
+		// 	};
+		const gpsdata = document.getElementById('gpsdata');
+		timeStamp.on('value', function(snapshot) {
+			ison(snapshot.val());
+			//Change to != to show GPS ON 
+			if (snapshot.val() != isondata) {
+				// console.log(snapshot.val());
+				marker1.setMap(null);
+				gpsdata.innerText = 'Off';
+			} else gpsdata.innerText = 'On';
+			// console.log(snapshot.exists());
+	
+		});
+	};
